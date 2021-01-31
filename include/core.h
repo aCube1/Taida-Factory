@@ -9,7 +9,6 @@ typedef struct taida {
 	GLFWwindow *window;
 
 	int maxFPS;
-	int startFrame;
 	float deltaTime;
 } taida_t;
 
