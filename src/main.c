@@ -1,32 +1,18 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "core.h"
 #include "window.h"
 #include "graphics.h"
+#include "primitives.h"
 #include "time.h"
 
 int main(int argv, char *argc[])
 {
 	taida_t *taida = taidaInit((taidaOptions_t) {
 			.title = "Factory",
-
+			
+			.FPS = 60.f,
 			.width = 800, .height = 600,
 			});
-
-	GLfloat vertices[] = {
-		-0.5f, -0.5f, 0.0f, /* left bottom */
-		 0.5f, -0.5f, 0.0f, /* right bottom */
-		 0.5f,  0.5f, 0.0f, /* left top */
-		-0.5f,  0.5f, 0.0f, /* right top */
-	};
-
-	GLint indices[] = {
-		0, 1, 2, /* left bottom */
-		0, 2, 3, /* right bottom */
-	};
-
-	taida->time = glfwGetTime();
-	const float frameCap = 1.0f / taida->maxFPS;
 
 	const char *vertexShaderSource = "#version 330 core\n"
 		"layout (location = 0) in vec3 aPos;\n"
@@ -42,38 +28,31 @@ int main(int argv, char *argc[])
 		"	fragColor = vec4(0.0f, 0.5f, 1.0f, 1.0f);"
 		"}\n";
 
-	GLuint VBO, VAO, EBO, shaderProgram;
-	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
+	taidaShaderSource_t shaderSource = {
+		.vertex = vertexShaderSource,
+		.fragment = fragmentShaderSource,
+	};
 
-	glGenBuffers(1, &VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	taidaRectangle_t *rectangle = taidaCreateRectangle(&shaderSource);
 
-	glGenBuffers(1, &EBO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-	shaderProgram = taidaCreateShaderProgram(vertexShaderSource, fragmentShaderSource);
-
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
-	
-	glUseProgram(shaderProgram);
-	glBindVertexArray(VAO);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-	glfwSwapInterval(taida->maxFPS);
+	glfwSwapInterval(0);
+	taida->lastFrameTime = glfwGetTime();
 	while (!glfwWindowShouldClose(taida->window)) {
+		taida->currentTime = glfwGetTime();
+		taida->deltaTime = taida->currentTime - taida->lastFrameTime;
+		
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		/* BeginDraw */
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		taidaDrawRectangle(rectangle);
 		/* EndDraw */
-
-		glfwSwapBuffers(taida->window);
+			
+		glfwSwapBuffers(taida->window);	
 		glfwPollEvents();
+		if (taida->deltaTime < 1000.f / taida->maxFPS)
+			taidaDelay((1000.f / taida->maxFPS) - taida->deltaTime);
+		
+		taida->lastFrameTime = taida->currentTime;
 	};
 	glDisableVertexAttribArray(0);
 

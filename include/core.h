@@ -4,18 +4,19 @@
 #include <stdbool.h>
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
+#include "cglm/cglm.h"
 
-typedef struct taida {
+typedef struct {
 	GLFWwindow *window;
 
-	int maxFPS;
-	float deltaTime;
+	float maxFPS, deltaTime;
+	double lastUpdateTime, lastFrameTime, currentTime;
 } taida_t;
 
-typedef struct taidaOptions {
+typedef struct {
 	char *title;
 
-	int FPS;
+	float FPS;
 
 	int x, y;
 	int width, height;
