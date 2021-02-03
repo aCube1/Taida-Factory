@@ -6,9 +6,23 @@
 #include "GLFW/glfw3.h"
 #include "cglm/cglm.h"
 
+typedef struct taidaShaderSource {
+	const char *vertex; /* Vertex Shader Source */
+       	const char *fragment; /* Fragment Shader Source */
+} taidaShaderSource_t;
+
 typedef struct {
 	GLFWwindow *window;
 
+	struct {
+		GLuint shaderProgram;
+
+		GLuint VBO, VAO, EBO;
+
+		const char *vertexShaderSource, *fragmentShaderSource;	
+	} rectangle;
+
+	bool primitivesInitialized;
 	float maxFPS, deltaTime;
 	double lastUpdateTime, lastFrameTime, currentTime;
 } taida_t;

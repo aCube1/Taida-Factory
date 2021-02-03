@@ -33,7 +33,9 @@ taida_t *taidaInit(taidaOptions_t options)
 	
 	glfwMakeContextCurrent(taida->window);
 	glfwSetWindowPos(taida->window, options.x, options.y);
+	glfwSetWindowSizeLimits(taida->window, options.width, options.height, GLFW_DONT_CARE, GLFW_DONT_CARE);
 	glfwSetErrorCallback(taidaGLFWError);
+	glfwSetFramebufferSizeCallback(taida->window, taidaGLFWFramebuffer);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		taidaLogError("GLAD and OpenGL Not Initialized");
@@ -45,6 +47,8 @@ taida_t *taidaInit(taidaOptions_t options)
 
 	taida->maxFPS = options.FPS;
 	taidaLogInfo("Engine Bases Created");
+
+	taida->primitivesInitialized = false;	
 
 	return taida;
 }
@@ -62,4 +66,9 @@ void taidaClose(taida_t *taida)
 
 	glfwTerminate();
 	taidaLogInfo("Engine Closed and Destroyed");
+}
+
+void taidaGLFWFramebuffer(GLFWwindow *window, int width, int height)
+{
+	glViewport(0, 0, width, height);
 }

@@ -5,15 +5,7 @@
 #include "graphics.h"
 #include "log.h"
 
-typedef struct {
-	GLuint shaderProgram;
-
-	GLuint VBO;
-	GLuint VAO;
-	GLuint EBO;
-} taidaRectangle_t;
-
-taidaRectangle_t *taidaCreateRectangle(taidaShaderSource_t *shaderSource);
-void taidaDrawRectangle(taidaRectangle_t *rectangle);
+void taidaInitPrimitives(taida_t *taida);
+void taidaDrawRectangle(taida_t *taida);
 
 #endif /* _PRIMITIVES_H_ */
