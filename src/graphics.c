@@ -75,3 +75,5 @@ GLuint taidaCompileFragmentShader(const char *fragmentShaderSource)
 
 	return fragmentShader;
 }
+
+

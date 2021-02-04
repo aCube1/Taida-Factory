@@ -25,5 +25,5 @@ add_subdirectory(ext/glad)
 
 add_executable(${PROJECT_NAME} ${SRCS})
 
-target_include_directories(${PROJECT_NAME} PUBLIC "include" "ext/includes")
+target_include_directories(${PROJECT_NAME} PUBLIC "include" "ext/stb/include")
 target_link_libraries(${PROJECT_NAME} cglm glad glfw GL X11 pthread Xrandr Xi dl)
