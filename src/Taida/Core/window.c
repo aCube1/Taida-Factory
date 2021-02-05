@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "window.h"
+#include "Taida/Core/window.h"
 
 taida_t *taidaInit(taidaOptions_t options)
 {
@@ -47,8 +47,6 @@ taida_t *taidaInit(taidaOptions_t options)
 
 	taida->maxFPS = options.FPS;
 	taidaLogInfo("Engine Bases Created");
-
-	taida->primitivesInitialized = false;	
 
 	return taida;
 }

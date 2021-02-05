@@ -7,11 +7,6 @@
 #include "cglm/cglm.h"
 
 typedef struct {
-	const char *vertex; /* Vertex Shader Source */
-       	const char *fragment; /* Fragment Shader Source */
-} taidaShaderSource_t;
-
-typedef struct {
 	GLFWwindow *window;
 
 	struct {
@@ -20,9 +15,9 @@ typedef struct {
 		GLuint VBO, VAO, EBO;
 
 		const char *vertexShaderSource, *fragmentShaderSource;	
-	} rectangle;
+	} shape;
 
-	bool primitivesInitialized;
+	bool shapeInitialized;
 	float maxFPS, deltaTime;
 	double lastUpdateTime, lastFrameTime, currentTime;
 } taida_t;
@@ -32,6 +27,9 @@ typedef struct {
 
 	GLuint VBO, VAO, EBO;
 	GLuint texture;
+
+	int width, height, nrChannels;
+	unsigned char *data;
 
 	const char *vertexShaderSource, *fragmentShaderSource;
 } taidaTexture_t;

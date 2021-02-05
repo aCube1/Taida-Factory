@@ -17,13 +17,15 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
 
-file(GLOB SRCS "src/*.c")
-
 add_subdirectory(ext/cglm)
 add_subdirectory(ext/glfw)
 add_subdirectory(ext/glad)
 
+add_subdirectory(src)
+
+file(GLOB SRCS "src/*.c")
+
 add_executable(${PROJECT_NAME} ${SRCS})
 
 target_include_directories(${PROJECT_NAME} PUBLIC "include" "ext/stb/include")
-target_link_libraries(${PROJECT_NAME} cglm glad glfw GL X11 pthread Xrandr Xi dl)
+target_link_libraries(${PROJECT_NAME} taidaCore taidaGraphics) 

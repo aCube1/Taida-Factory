@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "log.h"
+#include "Taida/Core/log.h"
 
 void taidaLog(const int priority, const char *msg)
 {

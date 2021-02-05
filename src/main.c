@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "window.h"
-#include "primitives.h"
-#include "time.h"
+#include "Taida/taidaCore.h"
+#include "Taida/taidaGraphics.h"
 
 int main(int argv, char *argc[])
 {
@@ -13,7 +12,7 @@ int main(int argv, char *argc[])
 			.width = 800, .height = 600,
 			});
 
-	taidaTexture_t *texture = taidaCreateTexture("../res/wall.jpg");
+	taidaInitShapes(taida);
 
 	glfwSwapInterval(0);
 	taida->lastFrameTime = glfwGetTime();
@@ -24,8 +23,7 @@ int main(int argv, char *argc[])
 		glClearColor(0.0f, 0.5f, 1.0f, 1.0f);	
 		glClear(GL_COLOR_BUFFER_BIT);
 		/* BeginDraw */
-		if (texture != NULL)
-			taidaDrawTexture(texture);
+		taidaDrawRectangle(taida);
 		/* EndDraw */
 			
 		glfwSwapBuffers(taida->window);	
@@ -36,7 +34,6 @@ int main(int argv, char *argc[])
 		taida->lastFrameTime = taida->currentTime;
 	};
 
-	taidaDestroyTexture(texture);
 	taidaClose(taida);
 
 	return 0;
