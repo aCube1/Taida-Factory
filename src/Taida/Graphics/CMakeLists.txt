@@ -1,6 +1,6 @@
 set(MODULE_NAME taidaGraphics)
 
-file(GLOB SRCS "shapes.c" "shaders.c")
+file(GLOB SRCS "shapes.c" "shaders.c" "images.c" "texture.c")
 
 add_library(${MODULE_NAME} STATIC ${SRCS})
 

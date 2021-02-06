@@ -12,7 +12,9 @@ int main(int argv, char *argc[])
 			.width = 800, .height = 600,
 			});
 
-	taidaInitShapes(taida);
+	/* taidaInitShapes(taida); */
+
+	taidaTexture_t *texture = taidaCreateNewTexture("../res/cube");
 
 	glfwSwapInterval(0);
 	taida->lastFrameTime = glfwGetTime();
@@ -23,7 +25,11 @@ int main(int argv, char *argc[])
 		glClearColor(0.0f, 0.5f, 1.0f, 1.0f);	
 		glClear(GL_COLOR_BUFFER_BIT);
 		/* BeginDraw */
-		taidaDrawRectangle(taida);
+		
+		/* taidaDrawRectangle(taida); */
+		if (texture != NULL)
+			taidaDrawTexture(texture);
+
 		/* EndDraw */
 			
 		glfwSwapBuffers(taida->window);	

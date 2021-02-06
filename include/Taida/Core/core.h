@@ -23,18 +23,6 @@ typedef struct {
 } taida_t;
 
 typedef struct {
-	GLuint shaderProgram;
-
-	GLuint VBO, VAO, EBO;
-	GLuint texture;
-
-	int width, height, nrChannels;
-	unsigned char *data;
-
-	const char *vertexShaderSource, *fragmentShaderSource;
-} taidaTexture_t;
-
-typedef struct {
 	char *title;
 
 	float FPS;
