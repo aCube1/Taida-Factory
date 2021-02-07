@@ -4,25 +4,25 @@
 void taidaLog(const int priority, const char *msg)
 {
 	switch (priority) {
-		case TLOGP_ERROR:
+		case TAIDA_LOGP_ERROR:
 			fprintf(stderr, "[ERROR] TAIDA - %s\n", msg);
 			break;
-		case TLOGP_WARN:
+		case TAIDA_LOGP_WARN:
 			fprintf(stdout, "[WARN] TAIDA - %s\n", msg);
 			break;
-		case TLOGP_DEBUG:
+		case TAIDA_LOGP_DEBUG:
 			fprintf(stdout, "[DEBUG] TAIDA - %s\n", msg);
 			break;
-		case TLOGP_INFO:
+		case TAIDA_LOGP_INFO:
 			fprintf(stdout, "[INFO] TAIDA - %s\n", msg);
 			break;
-		case TLOGP_GLFW_ERROR:
+		case TAIDA_LOGP_GLFW_ERROR:
 			fprintf(stderr, "[GLFW ERROR] TAIDA - %s\n", msg);
 	}
 }
 
 void taidaGLFWError(int code, const char *msg) 
 {
-	taidaLog(TLOGP_GLFW_ERROR, msg);
+	taidaLog(TAIDA_LOGP_GLFW_ERROR, msg);
 }
 

@@ -3,8 +3,8 @@
 
 #include "Taida/Core/core.h"
 
-void taidaInitShapes(taida_t *taida);
+void taidaInitShapes(Taida_t *taida);
 
-void taidaDrawRectangle(taida_t *taida);
+void taidaDrawRectangle(Taida_t *taida);
 
 #endif /* _SHAPES_H_ */

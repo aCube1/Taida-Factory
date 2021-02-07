@@ -4,8 +4,8 @@
 #include "core.h"
 #include "log.h"
 
-taida_t *taidaInit(taidaOptions_t options);
-void taidaClose(taida_t *taida);
+Taida_t *taidaInit(TaidaOptions_t options);
+void taidaClose(Taida_t *taida);
 
 void taidaGLFWFramebuffer(GLFWwindow *window, int width, int height);
 

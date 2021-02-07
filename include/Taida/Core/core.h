@@ -15,12 +15,12 @@ typedef struct {
 		GLuint VBO, VAO, EBO;
 
 		const char *vertexShaderSource, *fragmentShaderSource;	
-	} shape;
+	} Shape;
 
 	bool shapeInitialized;
 	float maxFPS, deltaTime;
 	double lastUpdateTime, lastFrameTime, currentTime;
-} taida_t;
+} Taida_t;
 
 typedef struct {
 	char *title;
@@ -29,7 +29,7 @@ typedef struct {
 
 	int x, y;
 	int width, height;
-} taidaOptions_t;
+} TaidaOptions_t;
 
 #endif /* _CORE_H_ */
 

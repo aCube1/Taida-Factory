@@ -5,9 +5,9 @@
 #include "Taida/Core/log.h"
 #include "Taida/Graphics/images.h"
 
-taidaImage_t *taidaLoadNewImage(const char *filePath)
+TaidaImage_t *taidaLoadNewImage(const char *filePath)
 {
-	taidaImage_t *image = malloc(sizeof(taidaImage_t));
+	TaidaImage_t *image = malloc(sizeof(TaidaImage_t));
 
 	if (image == NULL) {
 		taidaLogError("Image Cannot Be Loaded");
@@ -29,7 +29,7 @@ taidaImage_t *taidaLoadNewImage(const char *filePath)
 	return image;
 }
 
-void taidaDestroyImage(taidaImage_t *image)
+void taidaDestroyImage(TaidaImage_t *image)
 {
 	if (image) {
 		if (image->data)

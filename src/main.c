@@ -5,7 +5,7 @@
 
 int main(int argv, char *argc[])
 {
-	taida_t *taida = taidaInit((taidaOptions_t) {
+	Taida_t *taida = taidaInit((TaidaOptions_t) {
 			.title = "Factory",
 			
 			.FPS = 60.f,
@@ -14,7 +14,7 @@ int main(int argv, char *argc[])
 
 	/* taidaInitShapes(taida); */
 
-	taidaTexture_t *texture = taidaCreateNewTexture("../res/cube");
+	TaidaTexture_t *texture = taidaCreateNewTexture("../res/cube");
 
 	glfwSwapInterval(0);
 	taida->lastFrameTime = glfwGetTime();
@@ -39,6 +39,7 @@ int main(int argv, char *argc[])
 		
 		taida->lastFrameTime = taida->currentTime;
 	};
+	taidaDestroyTexture(texture);
 
 	taidaClose(taida);
 

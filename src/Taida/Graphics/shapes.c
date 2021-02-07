@@ -4,7 +4,7 @@
 
 static const char *vertexShaderSource = "", *fragmentShaderSource = "";
 
-void taidaInitShapes(taida_t *taida)
+void taidaInitShapes(Taida_t *taida)
 {
 	float vertices[] = {
 		/*   Position    */	/* Colors      */
@@ -37,26 +37,26 @@ void taidaInitShapes(taida_t *taida)
 		"	FragColor = vec4(ourColor, 1.0f);\n"
 		"}\0";
 
-	taida->shape.vertexShaderSource = vertexShaderSource;
-	taida->shape.fragmentShaderSource = fragmentShaderSource;
+	taida->Shape.vertexShaderSource = vertexShaderSource;
+	taida->Shape.fragmentShaderSource = fragmentShaderSource;
 
-	taida->shape.shaderProgram = taidaCreateShaderProgram(taida->shape.vertexShaderSource, taida->shape.fragmentShaderSource);
+	taida->Shape.shaderProgram = taidaCreateShaderProgram(taida->Shape.vertexShaderSource, taida->Shape.fragmentShaderSource);
 
-	if (taida->shape.shaderProgram == 0) {
+	if (taida->Shape.shaderProgram == 0) {
 		taidaLogWarn("Cannot Create ShaderProgram For Shape");
 		return;
 	}
 
-	glGenVertexArrays(1, &taida->shape.VAO);
-	glGenBuffers(1, &taida->shape.VBO);	
-	glGenBuffers(1, &taida->shape.EBO);
+	glGenVertexArrays(1, &taida->Shape.VAO);
+	glGenBuffers(1, &taida->Shape.VBO);	
+	glGenBuffers(1, &taida->Shape.EBO);
 	
-	glBindVertexArray(taida->shape.VAO);
+	glBindVertexArray(taida->Shape.VAO);
 
-	glBindBuffer(GL_ARRAY_BUFFER, taida->shape.VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, taida->Shape.VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, taida->shape.EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, taida->Shape.EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
@@ -69,10 +69,10 @@ void taidaInitShapes(taida_t *taida)
 	taida->shapeInitialized = true;
 }
 
-void taidaDrawRectangle(taida_t *taida)
+void taidaDrawRectangle(Taida_t *taida)
 {
-	glUseProgram(taida->shape.shaderProgram);
-	glBindVertexArray(taida->shape.VAO);
+	glUseProgram(taida->Shape.shaderProgram);
+	glBindVertexArray(taida->Shape.VAO);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

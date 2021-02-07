@@ -10,13 +10,13 @@ typedef struct {
 	GLuint VAO, VBO, EBO;
 	GLuint texture;
 
-	taidaImage_t *image;
+	TaidaImage_t *image;
 
 	const char *vertexShaderSource, *fragmentShaderSource;
-} taidaTexture_t;
+} TaidaTexture_t;
 
-taidaTexture_t *taidaCreateNewTexture(const char *filePath);
-void taidaDrawTexture(taidaTexture_t *texture);
-void taidaDestroyTexture(taidaTexture_t *texture);
+TaidaTexture_t *taidaCreateNewTexture(const char *filePath);
+void taidaDrawTexture(TaidaTexture_t *texture);
+void taidaDestroyTexture(TaidaTexture_t *texture);
 
 #endif /* _TEXTURE_H_ */

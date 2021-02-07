@@ -1,6 +1,6 @@
 set(MODULE_NAME taidaCore)
 
-file(GLOB SRCS "log.c" "window.c" "time.c")
+file(GLOB SRCS "*.c")
 
 add_library(${MODULE_NAME} STATIC ${SRCS})
 

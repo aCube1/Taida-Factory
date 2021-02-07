@@ -6,9 +6,9 @@
 
 const char *vertexShaderSource, *fragmentShaderSource;
 
-taidaTexture_t *taidaCreateNewTexture(const char *filePath)
+TaidaTexture_t *taidaCreateNewTexture(const char *filePath)
 {
-	taidaTexture_t *texture = malloc(sizeof(taidaTexture_t));
+	TaidaTexture_t *texture = malloc(sizeof(TaidaTexture_t));
 
 	if (texture == NULL) {
 		taidaLogError("Texture Cannot Be Created");
@@ -117,7 +117,7 @@ taidaTexture_t *taidaCreateNewTexture(const char *filePath)
 	return texture;
 }
 
-void taidaDrawTexture(taidaTexture_t *texture)
+void taidaDrawTexture(TaidaTexture_t *texture)
 {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture->texture);
@@ -128,7 +128,7 @@ void taidaDrawTexture(taidaTexture_t *texture)
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-void taidaDestroyTexture(taidaTexture_t *texture)
+void taidaDestroyTexture(TaidaTexture_t *texture)
 {
 	if (texture) {
 		if (texture->image)

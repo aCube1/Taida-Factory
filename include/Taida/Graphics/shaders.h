@@ -3,7 +3,7 @@
 
 #include "glad/glad.h"
 
-enum taidaShaderType{
+enum {
 	TAIDA_VERTEXSHADER,
 	TAIDA_FRAGMENTSHADER,
 };

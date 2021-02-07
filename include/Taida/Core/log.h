@@ -1,18 +1,18 @@
 #ifndef _LOG_H_
 #define _LOG_H_
 
-#define taidaLogError(msg) taidaLog(TLOGP_ERROR, msg)
-#define taidaLogWarn(msg) taidaLog(TLOGP_WARN, msg)
-#define taidaLogDebug(msg) taidaLog(TLOGP_DEBUG, msg)
-#define taidaLogInfo(msg) taidaLog(TLOGP_INFO, msg)
+#define taidaLogError(msg) taidaLog(TAIDA_LOGP_ERROR, msg)
+#define taidaLogWarn(msg) taidaLog(TAIDA_LOGP_WARN, msg)
+#define taidaLogDebug(msg) taidaLog(TAIDA_LOGP_DEBUG, msg)
+#define taidaLogInfo(msg) taidaLog(TAIDA_LOGP_INFO, msg)
 
 /* log priorities */
-enum taidaPriority {
-	TLOGP_ERROR,
-	TLOGP_WARN,
-	TLOGP_DEBUG,
-	TLOGP_INFO,
-	TLOGP_GLFW_ERROR,
+enum {
+	TAIDA_LOGP_ERROR,
+	TAIDA_LOGP_WARN,
+	TAIDA_LOGP_DEBUG,
+	TAIDA_LOGP_INFO,
+	TAIDA_LOGP_GLFW_ERROR,
 };
 
 /* taidaLog

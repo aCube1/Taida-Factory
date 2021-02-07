@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "Taida/Core/window.h"
 
-taida_t *taidaInit(taidaOptions_t options)
+Taida_t *taidaInit(TaidaOptions_t options)
 {
 	if (!glfwInit()) {
 		taidaLogError("GLFW Not Initialized");
@@ -14,7 +14,7 @@ taida_t *taidaInit(taidaOptions_t options)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	taida_t *taida = malloc(sizeof(taida_t));
+	Taida_t *taida = malloc(sizeof(Taida_t));
 	if (taida == NULL) {
 		taidaLogError("Can\'t Create Engine Bases");
 		
@@ -51,7 +51,7 @@ taida_t *taidaInit(taidaOptions_t options)
 	return taida;
 }
 
-void taidaClose(taida_t *taida)
+void taidaClose(Taida_t *taida)
 {
 	if (taida != NULL) {
 		if (taida->window != NULL) {
