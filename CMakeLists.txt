@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.1.8)
-
 project(Taida)
 
 set(CMAKE_C_FLAGS "-pedantic")
@@ -9,8 +8,13 @@ set(PROJECT_VERSION 0.0.10)
 
 option(TAIDA_BUILD_SHAREDLIBS "Build Shared Libs" OFF)
 
-option(CGLM_SHARED "" OFF)
-option(CGLM_STATIC "" ON)
+if (TAIDA_BUILD_SHAREDLIBS)
+	option(CGLM_SHARED "" ON)
+	option(CGLM_STATIC "" OFF)
+else ()
+	option(CGLM_SHARED "" OFF)
+	option(CGLM_STATIC "" ON)
+endif ()
 option(CGLM_USE_C99 "" ON)
 option(CGLM_USE_TESTS "" OFF)
 
@@ -24,5 +28,3 @@ add_subdirectory(ext/glfw)
 add_subdirectory(ext/glad)
 
 add_subdirectory(src)
-
-target_include_directories(${PROJECT_NAME} PUBLIC "include" "ext/stb/include")
