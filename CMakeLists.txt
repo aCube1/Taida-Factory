@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 3.1.8)
 
-project(factory)
+project(Taida)
 
 set(CMAKE_C_FLAGS "-pedantic")
 set(CMAKE_C_STANDARD 99)
 
-set(PROJECT_VERSION 0.0.3)
+set(PROJECT_VERSION 0.0.10)
+
+option(TAIDA_BUILD_SHAREDLIBS "Build Shared Libs" OFF)
 
 option(CGLM_SHARED "" OFF)
 option(CGLM_STATIC "" ON)
@@ -23,9 +25,4 @@ add_subdirectory(ext/glad)
 
 add_subdirectory(src)
 
-file(GLOB SRCS "src/*.c")
-
-add_executable(${PROJECT_NAME} ${SRCS})
-
 target_include_directories(${PROJECT_NAME} PUBLIC "include" "ext/stb/include")
-target_link_libraries(${PROJECT_NAME} taidaCore taidaGraphics) 
